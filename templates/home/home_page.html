@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    {#    <div class="container mt-5">#}
+    {#        <p class="title">#}
+    {#            <b>Welcome</b> to our new site!#}
+    {#        </p>#}
+    {##}
+    {#        {{ page.body|richtext }}#}
+    {##}
+    {##}
+    {##}
+    {#        {% for item in page.homepage_images.all %}#}
+    {#            {% image item.image width-1500 as image %}#}
+    {#            {% image item.image fill-320x240 as image %}#}
+    {#            <div class="card" style="width: 18rem;">#}
+    {#                <img src="{{ image.url }}" class="card-img-top" alt="{{ item.caption }}">#}
+    {#            </div>#}
+    {#            <br>#}
+    {#        {% endfor %}#}
+    {##}
+    {##}
+    {#    </div>#}
+
+
+
+
+
+    <div class="container-fluid py-4">
+
+
+
+        {% image self.head_background_image width-1500 as img %}
+        <div class="p-5 mb-4 bg-light rounded-3"
+             style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center; opacity: 0.9;">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold" style="color: white">{{ self.title }}</h1>
+                <p class="col-md-8 fs-4" style="color: white !important;">{{ page.body|richtext }}</p>
+
+            </div>
+        </div>
+
+        {#        <div class="row p-3">#}
+        {##}
+        {#            {% for item in page.homepage_images.all %}#}
+        {#            {% image item.image width-1500 as image %}#}
+        {#                {% image item.image fill-320x240 as image %}#}
+        {##}
+        {#                <div class="card" style="width: 18rem; margin-right: 10px">#}
+        {#                    <img src="{{ image.url }}" class="card-img-top" alt="...">#}
+        {#                    <div class="card-body">#}
+        {#                        <h5 class="card-title">{{ item.image.title|truncatechars:15 }}</h5>#}
+        {#                        <a href="#" class="btn btn-primary">Go somewhere</a>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {##}
+        {#            {% endfor %}#}
+        {#        </div>#}
+
+        <div class="row justify-content-evenly">
+            {% for block in page.content %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+
+        {#        <article>#}
+        {#            {% for block in page.content %}#}
+        {##}
+        {#                {% if block.block_type == 'heading' %}#}
+        {#                    <h1>{{ block.value }}</h1>#}
+        {#                {% elif block.block_type == 'cards' %}#}
+        {#                    {{ block }}#}
+        {#                {% else %}#}
+        {#                    <section class="block-{{ block.block_type }}">#}
+        {#                        {% include_block block %}#}
+        {#                    </section>#}
+        {#                {% endif %}#}
+        {#           #}
+        {#        </article>#}
+
+    </div>
+{% endblock %}
