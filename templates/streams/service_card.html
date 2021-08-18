@@ -1,0 +1,24 @@
+
+
+{% load blog_tags wagtailcore_tags wagtailimages_tags %}
+
+
+
+
+{% for card in self.cards %}
+    <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+        <div class="card features feature-clean explore-feature p-4 px-md-3 border-0 rounded-md shadow text-center">
+            <div class="icons text-primary text-center mx-auto">
+                {{ card.icon|safe }}
+            </div>
+
+            <div class="card-body p-0 content">
+                <h5 class="mt-4"><a href="{{ card.button_page.url }}" class="title text-dark">{{ card.card_title }}</a></h5>
+                <p class="text-muted">{{ card.card_desc|truncatewords:20 }}</p>
+
+                <a href="{{ card.button_page.url }}" class="text-primary">Read More <i
+                        class="uil uil-angle-right-b align-middle"></i></a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
