@@ -1,4 +1,9 @@
 # Byte-compiled / optimized / DLL files
+
+blog/migrations/
+home/migrations/
+site_settings/migrations/
+media/
 __pycache__/
 *.py[cod]
 *$py.class
