@@ -1,0 +1,682 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Wagtail Landing Page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template"/>
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern"/>
+    <meta name="author" content="Shreethemes"/>
+    <meta name="email" content="support@shreethemes.in"/>
+    <meta name="website" content="https://shreethemes.in"/>
+    <meta name="Version" content="v3.5.0"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'landing_page/images/favicon.ico' %}">
+    <!-- Bootstrap -->
+    <link href="{% static 'landing_page/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Icons -->
+    <link href="{% static 'landing_page/css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Slider -->
+    <link rel="stylesheet" href="{% static 'landing_page/css/tiny-slider.css' %}"/>
+    <!-- Main Css -->
+    <link href="{% static 'landing_page/css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt"/>
+    <link href="{% static 'landing_page/css/colors/default.css' %}" rel="stylesheet" id="color-opt">
+</head>
+
+<body>
+<!-- Loader -->
+<!-- <div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+</div> -->
+<!-- Loader -->
+
+<!-- Navbar STart -->
+<header id="topnav" class="defaultscroll sticky">
+    <div class="container">
+        <!-- Logo container-->
+        <a class="logo" href="/">
+            {{ self.title }}
+        </a>
+
+        <!-- Logo End -->
+
+        <!-- End Logo container-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+        <!--Login button Start-->
+        <ul class="buy-button list-inline mb-0">
+            <li class="list-inline-item mb-0">
+                <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                   aria-controls="offcanvasRight">
+                    <div class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="settings"
+                                                                            class="fea icon-sm"></i></div>
+                </a>
+            </li>
+
+            <li class="list-inline-item ps-1 mb-0">
+                <a href="https://1.envato.market/4n73n" target="_blank">
+                    <div class="btn btn-icon btn-pills btn-primary"><i data-feather="shopping-cart"
+                                                                       class="fea icon-sm"></i></div>
+                </a>
+            </li>
+        </ul>
+        <!--Login button End-->
+
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+                {% for menu in menuitems %}
+
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{{ menu.url }}">{{ menu.title }}</a>
+
+                    </li>
+                {% endfor %}
+
+            </ul><!--end navigation menu-->
+        </div><!--end navigation-->
+    </div><!--end container-->
+</header><!--end header-->
+<!-- Navbar End -->
+
+<!-- Hero Start -->
+<section class="bg-half-170 d-table w-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="title-heading mt-4">
+                    <h1 class="display-4 fw-bold mb-3">{{ self.title }}</h1>
+                    <p class="para-desc text-muted">{{ self.sub_title }}</p>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-6">
+                <img src="images/illustrator/Creativity-bro.svg" alt="">
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-light">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- Hero End -->
+
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+
+                    <h4 class="title mb-4">{{ self }}</h4>
+
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+
+        <div class="row">
+            {% for block in page.content %}
+                {% if block.block_type == 'services_cards' %}
+                    {% include_block block %}
+                {% endif %}
+            {% endfor %}
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-6">
+                <img src="images/landing/1.jpg" class="img-fluid rounded-md shadow-lg" alt="">
+            </div><!--end col-->
+
+            <div class="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                <div class="section-title text-md-start text-center ms-lg-4">
+                    <h4 class="title mb-4">Collaborate with your <br> team anytime and anywhare.</h4>
+                    <p class="text-muted mb-0 para-desc">Start working with <span
+                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                        generate awareness, drive traffic, connect.</p>
+
+                    <div class="d-flex align-items-center text-start mt-4 pt-2">
+                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
+                            <i class="uil uil-capture"></i>
+                        </div>
+                        <div class="flex-1">
+                            <a href="javascript:void(0)" class="text-dark h6">Find Better Leads</a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center text-start mt-4">
+                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
+                            <i class="uil uil-file"></i>
+                        </div>
+                        <div class="flex-1">
+                            <a href="javascript:void(0)" class="text-dark h6">Set Instant Metting</a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center text-start mt-4">
+                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
+                            <i class="uil uil-credit-card-search"></i>
+                        </div>
+                        <div class="flex-1">
+                            <a href="javascript:void(0)" class="text-dark h6">Get Paid Seemlessly</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-12">
+                <div class="sticky-bar">
+                    <div class="section-title text-lg-start text-center mb-4 mb-lg-0 pb-2 pb-lg-0">
+                        <h6 class="text-primary">Reviews</h6>
+                        <h4 class="title mb-4">People love us</h4>
+                        <p class="text-muted para-desc mb-0 mx-auto">Start working with <span
+                                class="text-primary fw-bold">Landrick</span> that can provide everything you need to
+                            generate awareness, drive traffic, connect.</p>
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-lg-8 col-12">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-12 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                                <div class="d-flex client-testi">
+                                    <img src="images/client/01.jpg"
+                                         class="avatar avatar-small client-image rounded shadow" alt="">
+                                    <div class="flex-1 content p-3 shadow rounded bg-white position-relative">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                        </ul>
+                                        <p class="text-muted mt-2">" It seems that only fragments of the original text
+                                            remain in the Lorem Ipsum texts used today. "</p>
+                                        <h6 class="text-primary">- Thomas Israel <small class="text-muted">C.E.O</small>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-12 mt-4 pt-2">
+                                <div class="d-flex client-testi">
+                                    <img src="images/client/02.jpg"
+                                         class="avatar avatar-small client-image rounded shadow" alt="">
+                                    <div class="flex-1 content p-3 shadow rounded bg-white position-relative">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i>
+                                            </li>
+                                        </ul>
+                                        <p class="text-muted mt-2">" One disadvantage of Lorum Ipsum is that in Latin
+                                            certain letters appear more frequently than others. "</p>
+                                        <h6 class="text-primary">- Barbara McIntosh <small
+                                                class="text-muted">M.D</small></h6>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-12 mt-4 pt-2">
+                                <div class="d-flex client-testi">
+                                    <img src="images/client/03.jpg"
+                                         class="avatar avatar-small client-image rounded shadow" alt="">
+                                    <div class="flex-1 content p-3 shadow rounded bg-white position-relative">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                        </ul>
+                                        <p class="text-muted mt-2">" The most well-known dummy text is the 'Lorem
+                                            Ipsum', which is said to have originated in the 16th century. "</p>
+                                        <h6 class="text-primary">- Carl Oliver <small class="text-muted">P.A</small>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end col-->
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                                <div class="d-flex client-testi">
+                                    <img src="images/client/04.jpg"
+                                         class="avatar avatar-small client-image rounded shadow" alt="">
+                                    <div class="flex-1 content p-3 shadow rounded bg-white position-relative">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                        </ul>
+                                        <p class="text-muted mt-2">" According to most sources, Lorum Ipsum can be
+                                            traced back to a text composed by Cicero. "</p>
+                                        <h6 class="text-primary">- Christa Smith <small
+                                                class="text-muted">Manager</small></h6>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-12 mt-4 pt-2">
+                                <div class="d-flex client-testi">
+                                    <img src="images/client/05.jpg"
+                                         class="avatar avatar-small client-image rounded shadow" alt="">
+                                    <div class="flex-1 content p-3 shadow rounded bg-white position-relative">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                        </ul>
+                                        <p class="text-muted mt-2">" There is now an abundance of readable dummy texts.
+                                            These are usually used when a text is required. "</p>
+                                        <h6 class="text-primary">- Dean Tolle <small
+                                                class="text-muted">Developer</small></h6>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+                    <h4 class="title mb-4">Latest News</h4>
+                    <p class="text-muted para-desc mx-auto mb-0">Start working with <span class="text-primary fw-bold">Landrick</span>
+                        that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow">
+                    <div class="position-relative">
+                        <img src="images/blog/01.jpg" class="card-img-top rounded-top" alt="...">
+                        <div class="overlay rounded-top bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <h5><a href="javascript:void(0)" class="card-title title text-dark">Design your apps in your own
+                            way</a></h5>
+                        <div class="post-meta d-flex justify-content-between mt-3">
+                            <ul class="list-unstyled mb-0">
+                                <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)"
+                                                                          class="text-muted like"><i
+                                        class="uil uil-heart me-1"></i>33</a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                                        class="uil uil-comment me-1"></i>08</a></li>
+                            </ul>
+                            <a href="blog-detail.html" class="text-muted readmore">Read More <i
+                                    class="uil uil-angle-right-b align-middle"></i></a>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <small class="text-light user d-block"><i class="uil uil-user"></i> Calvin Carlo</small>
+                        <small class="text-light date"><i class="uil uil-calendar-alt"></i> 25th June 2021</small>
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow">
+                    <div class="position-relative">
+                        <img src="images/blog/02.jpg" class="card-img-top rounded-top" alt="...">
+                        <div class="overlay rounded-top bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <h5><a href="javascript:void(0)" class="card-title title text-dark">How apps is changing the IT
+                            world</a></h5>
+                        <div class="post-meta d-flex justify-content-between mt-3">
+                            <ul class="list-unstyled mb-0">
+                                <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)"
+                                                                          class="text-muted like"><i
+                                        class="uil uil-heart me-1"></i>33</a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                                        class="uil uil-comment me-1"></i>08</a></li>
+                            </ul>
+                            <a href="blog-detail.html" class="text-muted readmore">Read More <i
+                                    class="uil uil-angle-right-b align-middle"></i></a>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <small class="text-light user d-block"><i class="uil uil-user"></i> Calvin Carlo</small>
+                        <small class="text-light date"><i class="uil uil-calendar-alt"></i> 25th June 2021</small>
+                    </div>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                <div class="card blog rounded border-0 shadow">
+                    <div class="position-relative">
+                        <img src="images/blog/03.jpg" class="card-img-top rounded-top" alt="...">
+                        <div class="overlay rounded-top bg-dark"></div>
+                    </div>
+                    <div class="card-body content">
+                        <h5><a href="javascript:void(0)" class="card-title title text-dark">Smartest Applications for
+                            Business</a></h5>
+                        <div class="post-meta d-flex justify-content-between mt-3">
+                            <ul class="list-unstyled mb-0">
+                                <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)"
+                                                                          class="text-muted like"><i
+                                        class="uil uil-heart me-1"></i>33</a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i
+                                        class="uil uil-comment me-1"></i>08</a></li>
+                            </ul>
+                            <a href="blog-detail.html" class="text-muted readmore">Read More <i
+                                    class="uil uil-angle-right-b align-middle"></i></a>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <small class="text-light user d-block"><i class="uil uil-user"></i> Calvin Carlo</small>
+                        <small class="text-light date"><i class="uil uil-calendar-alt"></i> 25th June 2021</small>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-py-60">
+                    <div class="row">
+                        <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                            <a href="#" class="logo-footer">
+                                <img src="images/logo-light.png" height="24" alt="">
+                            </a>
+                            <p class="mt-4">Start working with Landrick that can provide everything you need to generate
+                                awareness, drive traffic, connect.</p>
+                            <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
+                            </ul><!--end icon-->
+                        </div><!--end col-->
+
+                        <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Company</h5>
+                            <ul class="list-unstyled footer-list mt-4">
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> About us</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Services</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Team</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Pricing</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Project</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Careers</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Blog</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Login</a></li>
+                            </ul>
+                        </div><!--end col-->
+
+                        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Usefull Links</h5>
+                            <ul class="list-unstyled footer-list mt-4">
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Terms of Services</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Privacy Policy</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Documentation</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Changelog</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Components</a></li>
+                            </ul>
+                        </div><!--end col-->
+
+                        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Newsletter</h5>
+                            <p class="mt-4">Sign up and receive the latest tips via email.</p>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="foot-subscribe mb-3">
+                                            <label class="form-label">Write your email <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="mail" class="fea icon-sm icons"></i>
+                                                <input type="email" name="email" id="emailsubscribe"
+                                                       class="form-control ps-5 rounded" placeholder="Your email : "
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="d-grid">
+                                            <input type="submit" id="submitsubscribe" name="send"
+                                                   class="btn btn-soft-primary" value="Subscribe">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="footer-py-30 footer-bar">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <div class="text-sm-start">
+                        <p class="mb-0">©
+                            <script>document.write(new Date().getFullYear())</script>
+                            Landrick. Design with <i class="mdi mdi-heart text-danger"></i> by <a
+                                    href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
+                        </p>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-sm-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <ul class="list-unstyled text-sm-end mb-0">
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/american-ex.png" class="avatar avatar-ex-sm"
+                                title="American Express" alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/discover.png" class="avatar avatar-ex-sm" title="Discover" alt=""></a>
+                        </li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/master-card.png" class="avatar avatar-ex-sm" title="Master Card"
+                                alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/payments/paypal.png"
+                                                                                       class="avatar avatar-ex-sm"
+                                                                                       title="Paypal" alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/payments/visa.png"
+                                                                                       class="avatar avatar-ex-sm"
+                                                                                       title="Visa" alt=""></a></li>
+                    </ul>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </div>
+</footer><!--end footer-->
+<!-- Footer End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end bg-white shadow" tabindex="-1" id="offcanvasRight"
+     aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header p-4 border-bottom">
+        <h5 id="offcanvasRightLabel" class="mb-0">
+            <img src="images/logo-dark.png" height="24" class="light-version" alt="">
+            <img src="images/logo-light.png" height="24" class="dark-version" alt="">
+        </h5>
+        <button type="button" class="btn-close d-flex align-items-center text-dark" data-bs-dismiss="offcanvas"
+                aria-label="Close"><i class="uil uil-times fs-4"></i></button>
+    </div>
+    <div class="offcanvas-body p-4">
+        <div class="row">
+            <div class="col-12">
+                <img src="images/contact.svg" class="img-fluid d-block mx-auto" style="max-width: 256px;" alt="">
+                <div class="card border-0 mt-5" style="z-index: 1">
+                    <div class="card-body p-0">
+                        <form method="post" name="myForm" onsubmit="return validateForm()">
+                            <p id="error-msg" class="mb-0"></p>
+                            <div id="simple-msg"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Your Name <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input name="name" id="name" type="text" class="form-control ps-5"
+                                                   placeholder="Name :">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="mail" class="fea icon-sm icons"></i>
+                                            <input name="email" id="email" type="email" class="form-control ps-5"
+                                                   placeholder="Email :">
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Subject</label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="book" class="fea icon-sm icons"></i>
+                                            <input name="subject" id="subject" class="form-control ps-5"
+                                                   placeholder="subject :">
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Comments <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="message-circle" class="fea icon-sm icons clearfix"></i>
+                                            <textarea name="comments" id="comments" rows="4" class="form-control ps-5"
+                                                      placeholder="Message :"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-grid">
+                                        <button type="submit" id="submit" name="send" class="btn btn-primary">Send
+                                            Message
+                                        </button>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </form>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div>
+
+    <div class="offcanvas-footer p-4 border-top text-center">
+        <ul class="list-unstyled social-icon social mb-0">
+            <li class="list-inline-item mb-0"><a href="https://1.envato.market/4n73n" target="_blank" class="rounded"><i
+                    class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://dribbble.com/shreethemes" target="_blank"
+                                                 class="rounded"><i class="uil uil-dribbble align-middle"
+                                                                    title="dribbble"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://www.facebook.com/shreethemes" target="_blank"
+                                                 class="rounded"><i class="uil uil-facebook-f align-middle"
+                                                                    title="facebook"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://www.instagram.com/shreethemes/" target="_blank"
+                                                 class="rounded"><i class="uil uil-instagram align-middle"
+                                                                    title="instagram"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://twitter.com/shreethemes" target="_blank" class="rounded"><i
+                    class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="mailto:support@shreethemes.in" class="rounded"><i
+                    class="uil uil-envelope align-middle" title="email"></i></a></li>
+            <li class="list-inline-item mb-0"><a href="https://shreethemes.in" target="_blank" class="rounded"><i
+                    class="uil uil-globe align-middle" title="website"></i></a></li>
+        </ul><!--end icon-->
+    </div>
+</div>
+<!-- Offcanvas End -->
+
+<!-- Back to top -->
+<a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fs-5"><i data-feather="arrow-up"
+                                                                                 class="fea icon-sm icons align-middle"></i></a>
+<!-- Back to top -->
+
+<!-- javascript -->
+<script src="{% static 'landing_page/js/bootstrap.bundle.min.js' %}"></script>
+<!-- SLIDER -->
+<script src="{% static 'landing_page/js/tiny-slider.js' %} "></script>
+<!-- Icons -->
+<script src="{% static 'landing_page/js/feather.min.js' %}"></script>
+<!-- Main Js -->
+<script src="{% static 'landing_page/js/plugins.init.js' %}"></script>
+<!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+<script src="{% static 'landing_page/js/app.js' %}"></script>
+<!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+</body>
+</html>
