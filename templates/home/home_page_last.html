@@ -25,6 +25,7 @@
     <!-- Main Css -->
     <link href="{% static 'landing_page/css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt"/>
     <link href="{% static 'landing_page/css/colors/default.css' %}" rel="stylesheet" id="color-opt">
+
 </head>
 
 <body>
@@ -44,7 +45,7 @@
     <div class="container">
         <!-- Logo container-->
         <a class="logo" href="/">
-            {{ self.title }}
+            {{ page.get_parent }}
         </a>
 
         <!-- Logo End -->
@@ -67,8 +68,10 @@
         <!--Login button Start-->
         <ul class="buy-button list-inline mb-0">
             <li class="list-inline-item mb-0">
-                <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                   aria-controls="offcanvasRight">
+                <a href="/settings/"
+{#                   data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"#}
+{#                   aria-controls="offcanvasRight"#}
+                >
                     <div class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="settings"
                                                                             class="fea icon-sm"></i></div>
                 </a>
@@ -101,6 +104,56 @@
     </div><!--end container-->
 </header><!--end header-->
 <!-- Navbar End -->
+
+<section class="home-slider position-relative">
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            {% for item in page.homepage_images.all %}
+                {#                {% image item.image width-1500 as image %}#}
+                {#                {% image item.image fill-320x240 as image %}#}
+                {% image item.image width-1500 as image %}
+
+                <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" data-bs-interval="3000">
+                    <div class="bg-home d-flex align-items-center"
+                         style="background-image:url('{{ image.url }}')">
+                        <div class="bg-overlay"></div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 text-center">
+                                    <div class="title-heading text-white mt-4">
+                                        <h1 class="display-4 title-dark fw-bold mb-3">{{ item.title }}</h1>
+                                        <p class="para-desc para-dark mx-auto text-light">{{ item.desc }}</p>
+                                        <div class="mt-4">
+                                            {% if item.button_page %}
+                                                <a href="{{ item.button_page.url }}" class="btn btn-primary mt-2"><i
+                                                        class="uil uil-book-open"></i>&nbsp&nbsp{{ item.button_text }}</a>
+                                            {% elif item.button_url %}
+                                                <a href="{{ item.button_url  }}" class="btn btn-primary mt-2"><i
+                                                        class="uil uil-book-open"></i>&nbsp&nbsp{{ item.button_text }}</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</section><!--end section-->
 
 <!-- Hero Start -->
 <section class="bg-half-170 d-table w-100">
@@ -150,49 +203,6 @@
         </div><!--end row-->
     </div><!--end container-->
 
-    <div class="container mt-100 mt-60">
-        <div class="row align-items-center">
-            <div class="col-lg-5 col-md-6">
-                <img src="images/landing/1.jpg" class="img-fluid rounded-md shadow-lg" alt="">
-            </div><!--end col-->
-
-            <div class="col-lg-7 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
-                <div class="section-title text-md-start text-center ms-lg-4">
-                    <h4 class="title mb-4">Collaborate with your <br> team anytime and anywhare.</h4>
-                    <p class="text-muted mb-0 para-desc">Start working with <span
-                            class="text-primary fw-bold">Landrick</span> that can provide everything you need to
-                        generate awareness, drive traffic, connect.</p>
-
-                    <div class="d-flex align-items-center text-start mt-4 pt-2">
-                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
-                            <i class="uil uil-capture"></i>
-                        </div>
-                        <div class="flex-1">
-                            <a href="javascript:void(0)" class="text-dark h6">Find Better Leads</a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center text-start mt-4">
-                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
-                            <i class="uil uil-file"></i>
-                        </div>
-                        <div class="flex-1">
-                            <a href="javascript:void(0)" class="text-dark h6">Set Instant Metting</a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center text-start mt-4">
-                        <div class="text-primary h4 mb-0 me-3 p-3 rounded-md shadow bg-white">
-                            <i class="uil uil-credit-card-search"></i>
-                        </div>
-                        <div class="flex-1">
-                            <a href="javascript:void(0)" class="text-dark h6">Get Paid Seemlessly</a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div><!--end container-->
 </section><!--end section-->
 
 <section class="section">

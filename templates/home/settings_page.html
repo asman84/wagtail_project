@@ -1,0 +1,330 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Wagtail Landing Page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template"/>
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern"/>
+    <meta name="author" content="Shreethemes"/>
+    <meta name="email" content="support@shreethemes.in"/>
+    <meta name="website" content="https://shreethemes.in"/>
+    <meta name="Version" content="v3.5.0"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'landing_page/images/favicon.ico' %}">
+    <!-- Bootstrap -->
+    <link href="{% static 'landing_page/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Icons -->
+    <link href="{% static 'landing_page/css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Slider -->
+    <link rel="stylesheet" href="{% static 'landing_page/css/tiny-slider.css' %}"/>
+    <!-- Main Css -->
+    <link href="{% static 'landing_page/css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt"/>
+    <link href="{% static 'landing_page/css/colors/default.css' %}" rel="stylesheet" id="color-opt">
+
+</head>
+
+<body>
+<!-- Loader -->
+<!-- <div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+</div> -->
+<!-- Loader -->
+
+<!-- Navbar STart -->
+<header id="topnav" class="defaultscroll sticky">
+    <div class="container">
+        <!-- Logo container-->
+        <a class="logo" href="/">
+            {{ page.get_parent }}
+        </a>
+
+        <!-- Logo End -->
+
+        <!-- End Logo container-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+        <!--Login button Start-->
+        <ul class="buy-button list-inline mb-0">
+            <li class="list-inline-item mb-0">
+                <a href="/settings/"
+{#                   data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"#}
+{#                   aria-controls="offcanvasRight"#}
+                >
+                    <div class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="settings"
+                                                                            class="fea icon-sm"></i></div>
+                </a>
+            </li>
+
+            <li class="list-inline-item ps-1 mb-0">
+                <a href="https://1.envato.market/4n73n" target="_blank">
+                    <div class="btn btn-icon btn-pills btn-primary"><i data-feather="shopping-cart"
+                                                                       class="fea icon-sm"></i></div>
+                </a>
+            </li>
+        </ul>
+        <!--Login button End-->
+
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+                {% for menu in menuitems %}
+
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{{ menu.url }}">{{ menu.title }}</a>
+
+                    </li>
+                {% endfor %}
+
+            </ul><!--end navigation menu-->
+        </div><!--end navigation-->
+    </div><!--end container-->
+</header><!--end header-->
+<!-- Navbar End -->
+
+<section class="home-slider position-relative">
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            {% for item in page.homepage_images.all %}
+                {#                {% image item.image width-1500 as image %}#}
+                {#                {% image item.image fill-320x240 as image %}#}
+                {% image item.image width-1500 as image %}
+
+                <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" data-bs-interval="3000">
+                    <div class="bg-home d-flex align-items-center"
+                         style="background-image:url('{{ image.url }}')">
+                        <div class="bg-overlay"></div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 text-center">
+                                    <div class="title-heading text-white mt-4">
+                                        <h1 class="display-4 title-dark fw-bold mb-3">{{ item.title }}</h1>
+                                        <p class="para-desc para-dark mx-auto text-light">{{ item.desc }}</p>
+                                        <div class="mt-4">
+                                            {% if item.button_page %}
+                                                <a href="{{ item.button_page.url }}" class="btn btn-primary mt-2"><i
+                                                        class="uil uil-book-open"></i>&nbsp&nbsp{{ item.button_text }}</a>
+                                            {% elif item.button_url %}
+                                                <a href="{{ item.button_url  }}" class="btn btn-primary mt-2"><i
+                                                        class="uil uil-book-open"></i>&nbsp&nbsp{{ item.button_text }}</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</section><!--end section-->
+
+<!-- Hero Start -->
+<section class="bg-half-170 d-table w-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="title-heading mt-4">
+                    <h1 class="display-4 fw-bold mb-3">{{ self.title }}</h1>
+                    <p class="para-desc text-muted">{{ self.sub_title }}</p>
+                </div>
+            </div><!--end col-->
+
+            <div class="col-md-6">
+                <img src="images/illustrator/Creativity-bro.svg" alt="">
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-light">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- Hero End -->
+
+
+
+
+
+
+<!-- Footer Start -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-py-60">
+                    <div class="row">
+                        <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                            <a href="#" class="logo-footer">
+                                <img src="images/logo-light.png" height="24" alt="">
+                            </a>
+                            <p class="mt-4">Start working with Landrick that can provide everything you need to generate
+                                awareness, drive traffic, connect.</p>
+                            <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
+                                <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
+                                        data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
+                            </ul><!--end icon-->
+                        </div><!--end col-->
+
+                        <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Company</h5>
+                            <ul class="list-unstyled footer-list mt-4">
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> About us</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Services</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Team</a></li>
+
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Login</a></li>
+                            </ul>
+                        </div><!--end col-->
+
+                        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Usefull Links</h5>
+                            <ul class="list-unstyled footer-list mt-4">
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Terms of Services</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Privacy Policy</a></li>
+                                <li><a href="javascript:void(0)" class="text-foot"><i
+                                        class="uil uil-angle-right-b me-1"></i> Documentation</a></li>
+
+                            </ul>
+                        </div><!--end col-->
+
+                        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h5 class="footer-head">Newsletter</h5>
+                            <p class="mt-4">Sign up and receive the latest tips via email.</p>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="foot-subscribe mb-3">
+                                            <label class="form-label">Write your email <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="mail" class="fea icon-sm icons"></i>
+                                                <input type="email" name="email" id="emailsubscribe"
+                                                       class="form-control ps-5 rounded" placeholder="Your email : "
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="d-grid">
+                                            <input type="submit" id="submitsubscribe" name="send"
+                                                   class="btn btn-soft-primary" value="Subscribe">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="footer-py-30 footer-bar">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <div class="text-sm-start">
+                        <p class="mb-0">©
+                            <script>document.write(new Date().getFullYear())</script>
+                            Landrick. Design with <i class="mdi mdi-heart text-danger"></i> by <a
+                                    href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
+                        </p>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-sm-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <ul class="list-unstyled text-sm-end mb-0">
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/american-ex.png" class="avatar avatar-ex-sm"
+                                title="American Express" alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/discover.png" class="avatar avatar-ex-sm" title="Discover" alt=""></a>
+                        </li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img
+                                src="images/payments/master-card.png" class="avatar avatar-ex-sm" title="Master Card"
+                                alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/payments/paypal.png"
+                                                                                       class="avatar avatar-ex-sm"
+                                                                                       title="Paypal" alt=""></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)"><img src="images/payments/visa.png"
+                                                                                       class="avatar avatar-ex-sm"
+                                                                                       title="Visa" alt=""></a></li>
+                    </ul>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </div>
+</footer><!--end footer-->
+<!-- Footer End -->
+
+
+<!-- Back to top -->
+<a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fs-5"><i data-feather="arrow-up"
+                                                                                 class="fea icon-sm icons align-middle"></i></a>
+<!-- Back to top -->
+
+<!-- javascript -->
+<script src="{% static 'landing_page/js/bootstrap.bundle.min.js' %}"></script>
+<!-- SLIDER -->
+<script src="{% static 'landing_page/js/tiny-slider.js' %} "></script>
+<!-- Icons -->
+<script src="{% static 'landing_page/js/feather.min.js' %}"></script>
+<!-- Main Js -->
+<script src="{% static 'landing_page/js/plugins.init.js' %}"></script>
+<!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+<script src="{% static 'landing_page/js/app.js' %}"></script>
+<!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+</body>
+</html>

@@ -22,7 +22,7 @@ class HomePage(Page):
     sub_title = models.CharField(blank=True,null=True, max_length=255)
     body = RichTextField(blank=True)
     head_background_image = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=False, on_delete=models.SET_NULL, related_name='+'
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
     )
 
     content = StreamField(
@@ -43,13 +43,14 @@ class HomePage(Page):
 
         MultiFieldPanel([
 
-            FieldPanel('sub_title', classname="full"),
-            FieldPanel('body', classname="full"),
-            ImageChooserPanel('head_background_image'),
-            StreamFieldPanel('content'),
+            # FieldPanel('sub_title', classname="full"),
+            # FieldPanel('body', classname="full"),
+            # ImageChooserPanel('head_background_image'),
+            # StreamFieldPanel('content'),
         ], heading="Home page content information"),
 
-        InlinePanel('homepage_images', label="Homepage images"),
+        InlinePanel('homepage_images', label="Carousel images"),
+
     ]
 
 
@@ -58,9 +59,34 @@ class HomePageGalleryImage(Orderable):
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
     )
-    caption = models.CharField(blank=True, max_length=250)
+    title = models.CharField(max_length=30)
+    desc = models.CharField(max_length=110)
+    button_page = ParentalKey(Page, on_delete=models.CASCADE, related_name='button_page', blank=True, null=True)
+    button_url = models.URLField(blank=True, null=True)
+    button_text = models.CharField(max_length=20)
 
     panels = [
         ImageChooserPanel('image'),
-        FieldPanel('caption'),
+        FieldPanel('title'),
+        FieldPanel('desc'),
+        FieldPanel('button_page'),
+        FieldPanel('button_url'),
+        FieldPanel('button_text'),
     ]
+
+class SettingsPage(Page):
+    template = 'home/settings_page.html'
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context['menuitems'] = Page.objects.filter(
+            live=True, show_in_menus=True)
+        return context
+
+
+
+    content_panels = Page.content_panels + [
+
+    ]
+
+
